@@ -1,0 +1,31 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>{{heading}}</h1>
+
+
+
+    <form [formGroup]="paymentForm">
+        <div text-center>
+            <p ion-text color="danger" *ngIf="submitAttempt && error_warning">{{error_warning}}</p>
+            <p ion-text color="secondary" *ngIf="submitAttempt && success">{{success}}</p>
+        </div>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>select payment method</ion-label>
+                        <ion-select [(ngModel)]="payment_method" formControlName="payment_method" interface="popover" [class.invalid]="!paymentForm.controls.payment_method.valid && (paymentForm.controls.payment_method.dirty || submitAttempt)">
+                            <ion-option *ngFor="let method of payment_methods" value="{{method.code}}">{{method.title}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!paymentForm.controls.payment_method.valid  && (paymentForm.controls.payment_method.dirty || submitAttempt)">{{field_error}}</p>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </form>
+
+    <div padding>
+        <button ion-button full color="primary" block (click)="save()">Save</button>
+    </div>
+</ion-content>

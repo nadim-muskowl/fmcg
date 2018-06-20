@@ -1,0 +1,62 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title text-center>
+                <img src="assets/imgs/logo.png" width="100" height="50">
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="menu-content">
+
+        <ion-list>
+            <ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+                <ion-avatar item-start>
+                    <img src="{{p.icon}}">
+                </ion-avatar>
+                <h1>{{p.title}}</h1>
+            </ion-item>
+        </ion-list>
+
+
+        <div class="follow-us">
+            <h1>follow us on social</h1>
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="logo-twitter"></ion-icon>
+            <ion-icon name="logo-linkedin"></ion-icon>
+            <ion-icon name="logo-googleplus"></ion-icon>
+        </div>
+
+    </ion-content>
+
+</ion-menu>
+
+<ion-header>
+    <ion-navbar>
+        <button start ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title center>
+            <img src="assets/imgs/logo.png" width="100" height="50">
+        </ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToAccount()"><ion-icon name="contact"></ion-icon></button>
+            <button ion-button icon-only (click)="goToWishlist()"><ion-icon name="heart-outline"></ion-icon></button>
+            <button ion-button icon-only (click)="goTocart()"><ion-icon name="cart"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+
+    <ion-toolbar>
+        <ion-searchbar start round placeholder="Search Products" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+        <ion-buttons end>
+            <button end ion-button class="follow-us-btn" (click)="presentActionSheet($event)">
+                Follow us &nbsp;
+                <ion-icon ios="ios-share" md="md-share"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,19 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <div text-center>
+        <h1>{{customer}}</h1>
+        <p>{{telephone}}</p>
+        <p>{{email}}</p>
+    </div>
+
+    <ion-list>
+        <ion-list-header>
+            Account Setting
+        </ion-list-header>
+        <ion-item (click)="gotoAddress()">Address Book</ion-item>
+        <ion-item (click)="gotoWishlist()">Wishlist</ion-item>
+        <ion-item (click)="gotoOrders()">My Orders</ion-item>
+        <ion-item>Change Password</ion-item>
+        <ion-item (click)="logout()">Logout of this app</ion-item>
+    </ion-list>
+</ion-content>

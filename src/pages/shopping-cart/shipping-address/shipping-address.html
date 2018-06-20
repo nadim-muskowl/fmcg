@@ -1,0 +1,117 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>{{heading}}</h1>
+
+    <ion-grid *ngIf="addresses?.length > 0">
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label floating>select address</ion-label>
+                    <ion-select [(ngModel)]="address_id" (ionChange)="fillFormData(address_id)" interface="popover">
+                        <ion-option *ngFor="let address of addresses" value="{{address.address_id}}">{{address.address_string}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <form [formGroup]="addressForm">
+        <div text-center>
+            <p ion-text color="danger" *ngIf="submitAttempt && error_warning">{{error_warning}}</p>
+            <p ion-text color="secondary" *ngIf="submitAttempt && success">{{success}}</p>
+        </div>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>firstname</ion-label>
+                        <ion-input [(ngModel)]="firstname" formControlName="firstname" type="text" [class.invalid]="!addressForm.controls.firstname.valid && (addressForm.controls.firstname.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.firstname.valid  && (addressForm.controls.firstname.dirty || submitAttempt)">{{error_firstname}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>lastname</ion-label>
+                        <ion-input [(ngModel)]="lastname" formControlName="lastname" type="text" [class.invalid]="!addressForm.controls.lastname.valid && (addressForm.controls.lastname.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.lastname.valid  && (addressForm.controls.lastname.dirty || submitAttempt)">{{error_lastname}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>company</ion-label>
+                        <ion-input [(ngModel)]="company" formControlName="company" type="text" [class.invalid]="!addressForm.controls.company.valid && (addressForm.controls.company.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.company.valid  && (addressForm.controls.company.dirty || submitAttempt)">{{error_company}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>address_1</ion-label>
+                        <ion-input [(ngModel)]="address_1" formControlName="address_1" type="text" [class.invalid]="!addressForm.controls.address_1.valid && (addressForm.controls.address_1.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.address_1.valid  && (addressForm.controls.address_1.dirty || submitAttempt)">{{error_address_1}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>address_2</ion-label>
+                        <ion-input [(ngModel)]="address_2" formControlName="address_2" type="text" [class.invalid]="!addressForm.controls.address_2.valid && (addressForm.controls.address_2.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.address_2.valid  && (addressForm.controls.address_2.dirty || submitAttempt)">{{error_address_2}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>country</ion-label>
+                        <ion-select [(ngModel)]="country_id" (ionChange)="getZone(country_id)" formControlName="country_id" interface="popover" [class.invalid]="!addressForm.controls.country_id.valid && (addressForm.controls.country_id.dirty || submitAttempt)">
+                            <ion-option *ngFor="let country of countries" value="{{country.country_id}}">{{country.name}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.country_id.valid  && (addressForm.controls.country_id.dirty || submitAttempt)">{{error_country_id}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>zone</ion-label>
+                        <ion-select [(ngModel)]="zone_id" formControlName="zone_id" interface="popover" [class.invalid]="!addressForm.controls.zone_id.valid && (addressForm.controls.zone_id.dirty || submitAttempt)">
+                            <ion-option *ngFor="let zone of zones" value="{{zone.zone_id}}">{{zone.name}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.zone_id.valid  && (addressForm.controls.zone_id.dirty || submitAttempt)">{{error_zone_id}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>postcode</ion-label>
+                        <ion-input [(ngModel)]="postcode" formControlName="postcode" type="text" [class.invalid]="!addressForm.controls.postcode.valid && (addressForm.controls.postcode.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.postcode.valid  && (addressForm.controls.postcode.dirty || submitAttempt)">{{error_postcode}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>city</ion-label>
+                        <ion-input [(ngModel)]="city" formControlName="city" type="text" [class.invalid]="!addressForm.controls.city.valid && (addressForm.controls.city.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!addressForm.controls.city.valid  && (addressForm.controls.city.dirty || submitAttempt)">{{error_city}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+
+    <div padding>
+        <button ion-button full color="primary" block (click)="save()">Save</button>
+    </div>
+
+
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>{{text}}</h1>
+    <ion-card *ngFor="let product of products;">
+
+        <ion-card-content>
+            <h3 [innerHTML]="product.name"></h3>
+            <p>{{product.model}}</p>
+            <p>
+                {{product.total}} = {{product.quantity}}*{{product.price}}
+            </p>
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-list>
+        <ion-item *ngFor="let total of totals;">
+            <div item-start>
+                <h6>{{total.title}}</h6>
+            </div>
+            <div item-end>
+                <p>{{total.text}}</p>
+            </div>
+        </ion-item>
+        <ion-item>
+            <button ion-button full color='secondary' (click)="saveOrder()">Place Order</button>
+        </ion-item>
+    </ion-list>
+
+
+</ion-content>

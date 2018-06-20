@@ -1,0 +1,75 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>Regsiter With Us</h1>
+
+    <form [formGroup]="registerForm">
+
+        <div text-center>
+            <p ion-text color="danger" *ngIf="submitAttempt && error_warning">{{error_warning}}</p>
+            <p ion-text color="secondary" *ngIf="submitAttempt && text_message">{{text_message}}</p>
+        </div>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Firstname</ion-label>
+                        <ion-input formControlName="firstname" type="text" [class.invalid]="!registerForm.controls.firstname.valid && (registerForm.controls.firstname.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!registerForm.controls.firstname.valid  && (registerForm.controls.firstname.dirty || submitAttempt)">{{error_firstname}}</p>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Lastname</ion-label>
+                        <ion-input formControlName="lastname" type="text" [class.invalid]="!registerForm.controls.lastname.valid && (registerForm.controls.lastname.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!registerForm.controls.lastname.valid  && (registerForm.controls.lastname.dirty || submitAttempt)">{{error_lastname}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input formControlName="email" type="text" [class.invalid]="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!registerForm.controls.email.valid  && (registerForm.controls.email.dirty || submitAttempt)">{{error_email}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Telephone</ion-label>
+                        <ion-input formControlName="telephone" type="text" [class.invalid]="!registerForm.controls.telephone.valid && (registerForm.controls.telephone.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!registerForm.controls.telephone.valid  && (registerForm.controls.telephone.dirty || submitAttempt)">{{error_telephone}}</p>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input formControlName="password" type="password" [class.invalid]="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!registerForm.controls.password.valid  && (registerForm.controls.password.dirty || submitAttempt)">{{error_password}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Confirm Password</ion-label>
+                        <ion-input formControlName="confirm" type="password" [class.invalid]="!registerForm.controls.confirm.valid && (registerForm.controls.confirm.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!registerForm.controls.confirm.valid  && (registerForm.controls.confirm.dirty || submitAttempt)">{{error_confirm}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+
+    <div padding>
+        <button ion-button color="primary" block (click)="save()">Register</button>
+    </div>
+</ion-content>

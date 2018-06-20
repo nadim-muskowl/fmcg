@@ -1,0 +1,17 @@
+<ion-content>
+    <div class="clear-fix"></div>
+
+    <ion-list *ngFor="let category of categories">
+
+        <ion-list-header text-wrap>
+            <h1 [innerHTML]="category.name" (click)="getDetail(category)" item-start></h1>
+        </ion-list-header>
+
+
+        <ion-item *ngFor="let children of category.children" (click)="getDetail(children)">
+            <h2 [innerHTML]="children.name"></h2>
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>

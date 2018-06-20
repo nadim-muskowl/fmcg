@@ -1,0 +1,44 @@
+<ion-grid>
+    <ion-row>
+        <ion-col>
+            <h2>{{text}}</h2>
+        </ion-col>
+        <ion-col>
+            <button ion-button color="secondary" icon-only (click)="addAddress()">
+              <ion-icon name="ios-add-outline"></ion-icon>
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+<ion-list>
+    <ion-item-sliding *ngFor="let address of addresses;">
+
+        <ion-item>
+            <h2 [innerHTML]="address.address"></h2>
+            <ion-buttons item-end>
+                <button ion-button icon-only (click)="editAddress(address)">
+                        <ion-icon name="ios-create-outline"></ion-icon>
+                    </button>
+                <button ion-button color="danger" (click)="deleteAddress(address)" icon-only>
+                        <ion-icon name="ios-trash-outline"></ion-icon>
+                    </button>
+            </ion-buttons>
+        </ion-item>
+
+        <ion-item-options side="left">
+            <button ion-button color="primary" (click)="editAddress(address)">
+                  <ion-icon name="ios-create-outline"></ion-icon>
+                  Edit
+                </button>
+        </ion-item-options>
+
+        <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteAddress(address)">
+                  <ion-icon name="ios-trash-outline"></ion-icon>
+                  Delete
+                </button>
+        </ion-item-options>
+
+    </ion-item-sliding>
+</ion-list>

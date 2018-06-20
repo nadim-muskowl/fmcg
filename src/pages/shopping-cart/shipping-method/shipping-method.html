@@ -1,0 +1,29 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>{{heading}}</h1>
+
+    <form [formGroup]="shippingForm">
+        <div text-center>
+            <p ion-text color="danger" *ngIf="submitAttempt && error_warning">{{error_warning}}</p>
+            <p ion-text color="secondary" *ngIf="submitAttempt && success">{{success}}</p>
+        </div>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>select shipping method</ion-label>
+                        <ion-select [(ngModel)]="shipping_method" formControlName="shipping_method" interface="popover" [class.invalid]="!shippingForm.controls.shipping_method.valid && (shippingForm.controls.shipping_method.dirty || submitAttempt)">
+                            <ion-option *ngFor="let method of shipping_methods" value="{{method.quote.code}}">{{method.quote.title}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!shippingForm.controls.shipping_method.valid  && (shippingForm.controls.shipping_method.dirty || submitAttempt)">{{field_error}}</p>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </form>
+
+    <div padding>
+        <button ion-button full color="primary" block (click)="save()">Save</button>
+    </div>
+</ion-content>

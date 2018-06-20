@@ -1,0 +1,46 @@
+<div>
+    <h1 text-center>{{text}}</h1>
+
+
+    <ion-card *ngFor="let product of products;">
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-8>
+                        <h3 [innerHTML]="product.name"></h3>
+                        <p>{{product.model}}</p>
+                        <p>
+                            {{product.total}} = {{product.quantity}}*{{product.price}}
+                        </p>
+                    </ion-col>
+                    <ion-col col-4>
+                        <ion-buttons end>
+                            <button ion-button color="secondary" icon-only (click)="edit(product)"><ion-icon name="ios-create-outline"></ion-icon></button>
+                            <button ion-button color="danger" icon-only (click)="remove(product)"><ion-icon name="ios-trash-outline"></ion-icon></button>
+                        </ion-buttons>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-card-content>
+
+    </ion-card>
+
+
+
+    <ion-list>
+        <ion-item *ngFor="let total of totals;">
+            <div item-start>
+                <h6>{{total.title}}</h6>
+            </div>
+            <div item-end>
+                <p>{{total.text}}</p>
+            </div>
+        </ion-item>
+        <ion-item>
+            <button ion-button full [disabled]="!hasProducts" color='secondary' (click)="goToCheckout()">Checkout</button>
+        </ion-item>
+    </ion-list>
+
+</div>

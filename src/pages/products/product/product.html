@@ -1,0 +1,45 @@
+<ion-content class="product-view">
+    <div class="clear-fix"></div>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <img src="{{popup}}">
+
+            </ion-col>
+            <ion-col col-6>
+                <h1>{{heading_title}}</h1>
+                <p>{{price}}</p>
+                <p>Availability: {{stock}}</p>
+                <rating [(ngModel)]="rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
+
+                <form [formGroup]="cartForm">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label floating>quantity</ion-label>
+                                    <ion-input [(ngModel)]="cart_quantity" formControlName="quantity" type="text" [class.invalid]="!cartForm.controls.quantity.valid && (cartForm.controls.quantity.dirty || submitAttempt)"></ion-input>
+                                </ion-item>
+                                <p class="invalid-message" *ngIf="!cartForm.controls.quantity.valid  && (cartForm.controls.quantity.dirty || submitAttempt)">{{field_error}}</p>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <button ion-button full (click)="save()">Add to cart</button>
+                                <button ion-button full color="light" (click)="addWishlist()">Add to wishlist</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </form>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <p [innerHTML]="description"></p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
