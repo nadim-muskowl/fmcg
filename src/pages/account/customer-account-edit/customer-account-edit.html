@@ -1,0 +1,57 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>Edit Account</h1>
+
+    <form [formGroup]="accountForm">
+
+        <div text-center>
+            <p ion-text color="danger" *ngIf="submitAttempt && error">{{error}}</p>
+            <p ion-text color="secondary" *ngIf="submitAttempt && success">{{success}}</p>
+        </div>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Firstname</ion-label>
+                        <ion-input formControlName="firstname" [(ngModel)]="firstname" type="text" [class.invalid]="!accountForm.controls.firstname.valid && (accountForm.controls.firstname.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!accountForm.controls.firstname.valid  && (accountForm.controls.firstname.dirty || submitAttempt)">{{error_firstname}}</p>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Lastname</ion-label>
+                        <ion-input formControlName="lastname" [(ngModel)]="lastname" type="text" [class.invalid]="!accountForm.controls.lastname.valid && (accountForm.controls.lastname.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!accountForm.controls.lastname.valid  && (accountForm.controls.lastname.dirty || submitAttempt)">{{error_lastname}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Email</ion-label>
+                        <ion-input formControlName="email" [(ngModel)]="email" type="text" [class.invalid]="!accountForm.controls.email.valid && (accountForm.controls.email.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!accountForm.controls.email.valid  && (accountForm.controls.email.dirty || submitAttempt)">{{error_email}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-item>
+                        <ion-label floating>Telephone</ion-label>
+                        <ion-input formControlName="telephone" [(ngModel)]="telephone" type="text" [class.invalid]="!accountForm.controls.telephone.valid && (accountForm.controls.telephone.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+                    <p class="invalid-message" *ngIf="!accountForm.controls.telephone.valid  && (accountForm.controls.telephone.dirty || submitAttempt)">{{error_telephone}}</p>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </form>
+
+    <div padding>
+        <button ion-button color="primary" block (click)="save()">Update</button>
+    </div>
+</ion-content>

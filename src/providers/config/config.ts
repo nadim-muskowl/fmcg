@@ -8,6 +8,7 @@ import { AlertProvider } from '../../providers/alert/alert';
 export class ConfigProvider {
 
   static BASE_URL: string = 'http://beauty.muskowl.com/index.php?route=restapi/';
+  static BASE_URL1: string = 'http://api1.mirjagroup.in/os/api/mobipeapi/';
   // static BASE_URL: string = 'http://localhost/opencart/ecom/index.php?route=restapi/';
   static CUSTOMER_ID = 0;
   static API_TOKEN = '';
@@ -106,7 +107,6 @@ export class ConfigProvider {
         });
     });
   }
-
 
   public getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

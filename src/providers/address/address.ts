@@ -108,7 +108,6 @@ export class AddressProvider {
     );
   }
 
-
   addPaymentAddress(data: any): any {
     this.URL = ConfigProvider.BASE_URL + 'payment/address&customer_id=' + ConfigProvider.CUSTOMER_ID + '&api_token=' + ConfigProvider.API_TOKEN;
     this.formData.append('firstname', data.firstname);
@@ -149,8 +148,13 @@ export class AddressProvider {
     );
   }
 
-
-
-
+  getStores(): any {
+    this.URL = ConfigProvider.BASE_URL + 'stores';
+    return this.http.get(this.URL,
+      {
+        headers: this.headers,
+      }
+    );
+  }
 
 }

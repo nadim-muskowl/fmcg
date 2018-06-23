@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { App } from 'ionic-angular/components/app/app';
-import { Nav, Platform } from 'ionic-angular';
+import { App, Nav, Platform, IonicApp, MenuController } from 'ionic-angular';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CustomerWishlistPage } from '../pages/account/customer-wishlist/customer-wishlist';
+import { CustomerOrderPage } from '../pages/account/customer-order/customer-order';
+
 import { CartPage } from '../pages/shopping-cart/cart/cart';
 import { CategoriesPage } from '../pages/products/categories/categories';
 import { CustomerAccountPage } from '../pages/account/customer-account/customer-account';
@@ -14,6 +16,16 @@ import { CustomerAccountPage } from '../pages/account/customer-account/customer-
 import { ConfigProvider } from '../providers/config/config';
 import { CustomerProvider } from '../providers/customer/customer';
 import { FollowUsProvider } from '../providers/follow-us/follow-us';
+
+
+//public
+import { TermsAndConditionsPage } from '../pages/public/terms-and-conditions/terms-and-conditions';
+import { HelpAndSupportPage } from '../pages/public/help-and-support/help-and-support';
+import { NotificationsPage } from '../pages/public/notifications/notifications';
+import { ContactUsPage } from '../pages/public/contact-us/contact-us';
+
+
+import { SearchProductsPage } from '../pages/products/search-products/search-products';
 
 
 export interface PageInterface {
@@ -30,14 +42,20 @@ export interface PageInterface {
   templateUrl: 'app.html'
 })
 export class MyApp {
-
+  public searchInput;
   rootPage: any = TabsPage;
+  alert;
 
   pages: PageInterface[] = [
     { title: 'home', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'assets/icon/home.png' },
     { title: 'shop by categories', name: 'TabsPage', component: TabsPage, tabComponent: CategoriesPage, index: 1, icon: 'assets/icon/home.png' },
-    { title: 'profile', name: 'TabsPage', component: TabsPage, tabComponent: CustomerAccountPage, index: 2, icon: 'assets/icon/home.png' },
+    { title: 'profile', name: 'CustomerAccountPage', component: CustomerAccountPage, icon: 'assets/icon/home.png' },
     { title: 'favourites', name: 'CustomerWishlistPage', component: CustomerWishlistPage, icon: 'assets/icon/home.png' },
+    { title: 'track order', name: 'CustomerOrderPage', component: CustomerOrderPage, icon: 'assets/icon/home.png' },
+    { title: 'notification', name: 'NotificationsPage', component: NotificationsPage, icon: 'assets/icon/home.png' },
+    { title: 'terms & conditions', name: 'TermsAndConditionsPage', component: TermsAndConditionsPage, icon: 'assets/icon/home.png' },
+    { title: 'help & support', name: 'HelpAndSupportPage', component: HelpAndSupportPage, icon: 'assets/icon/home.png' },
+    { title: 'contact us', name: 'ContactUsPage', component: ContactUsPage, icon: 'assets/icon/home.png' },
   ];
 
   @ViewChild(Nav) nav: Nav;
@@ -49,25 +67,11 @@ export class MyApp {
     public configProvider: ConfigProvider,
     private customerProvider: CustomerProvider,
     private followUsProvider: FollowUsProvider,
-    app: App
+    public app: App,
+    public menu: MenuController,
   ) {
-    this.platform.ready().then(() => {
-      this.platform.registerBackButtonAction(() => {
-        app.navPop();
-      });
-    });
-    this.checkToken();
     this.initializeApp();
-
-    // // used for an example of ngFor and navigation
-    // this.pages = [        
-    //   { title: 'track order', icon: 'assets/icon/track_order.png', component: HomePage },    
-    //   { title: 'notification', icon: 'assets/icon/home.png', component: HomePage },
-    //   { title: 'terms & conditions', icon: 'assets/icon/home.png', component: HomePage },
-    //   { title: 'help & support', icon: 'assets/icon/home.png', component: HomePage },
-    //   { title: 'contact', icon: 'assets/icon/home.png', component: HomePage },
-    // ];
-
+    this.checkToken();
   }
 
   initializeApp() {
@@ -76,8 +80,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.platform.registerBackButtonAction(() => {
+        let nav = this.app.getRootNav();
+        // alert(JSON.stringify(nav));
+
+        // if (nav.canGoBack()) {
+        //   nav.pop();
+        // } else {
+        //   this.platform.exitApp();
+        // }
+
+        this.openPage(this.pages[0]);
+      });
+
     });
   }
+
 
   presentActionSheet() {
     this.followUsProvider.presentActionSheet();
@@ -138,4 +157,15 @@ export class MyApp {
     }
     return;
   }
+
+
+  public onSearch(ev: any) {
+    this.searchInput = ev.target.value;
+    this.nav.setRoot(SearchProductsPage, { search: ev.target.value });
+  }
+
+  public onSearchCancel() {
+    this.searchInput = '';
+  }
+
 }

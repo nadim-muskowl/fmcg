@@ -43,10 +43,7 @@ export class CustomerLoginPage {
     public loadingProvider: LoadingProvider,
 
   ) {
-    this.loginForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      password: ['', Validators.required]
-    });
+    this.createForm();
 
     this.customerProvider.getData().then((data) => {
       if (data) {
@@ -56,6 +53,13 @@ export class CustomerLoginPage {
       console.log(e);
     });
 
+  }
+
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+      password: ['', Validators.required]
+    });
   }
 
   ionViewDidLoad() {

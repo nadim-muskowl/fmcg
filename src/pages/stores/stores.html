@@ -1,0 +1,35 @@
+<ion-content>
+    <div class="clear-fix"></div>
+    <h1 text-center>Our Stores</h1>
+
+    <ion-card>
+        <ion-card-header>
+            <h2>{{store}}</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <p>
+                <ion-icon name="pin"></ion-icon> {{address}}</p>
+            <p>
+                <ion-icon name="call"></ion-icon> {{telephone}}</p>
+            <p>{{open}}</p>
+            <p>{{comment}}</p>
+        </ion-card-content>
+    </ion-card>
+
+
+
+    <ion-card *ngFor="let location of locations">
+        <ion-card-header>
+            <h2>{{location.name}}</h2>
+        </ion-card-header>
+        <ion-card-content>
+            <p>
+                <ion-icon name="pin"></ion-icon> {{location.address}}</p>
+            <p>
+                <ion-icon name="call"></ion-icon> {{location.telephone}}</p>
+            <p>{{location.open}}</p>
+            <p>{{location.comment}}</p>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

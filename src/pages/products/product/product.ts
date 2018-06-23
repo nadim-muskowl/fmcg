@@ -6,6 +6,7 @@ import { CartProvider } from '../../../providers/cart/cart';
 import { WishlistProvider } from '../../../providers/wishlist/wishlist';
 import { LoadingProvider } from '../../../providers/loading/loading';
 import { AlertProvider } from '../../../providers/alert/alert';
+
 @IonicPage()
 @Component({
   selector: 'page-product',
@@ -19,8 +20,11 @@ export class ProductPage {
   public description;
   public stock;
   public price;
+  public special;
   public rating;
   public popup;
+
+  public images;
 
   submitAttempt;
   cartForm: FormGroup;
@@ -32,6 +36,10 @@ export class ProductPage {
   private success;
   private error_warning;
   private field_error = 'field is required';
+
+
+  private review_tab: string;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -56,8 +64,10 @@ export class ProductPage {
         this.manufacturer = response.manufacturer;
         this.stock = response.stock;
         this.price = response.price;
+        this.special=response.special;
         this.rating = response.rating;
         this.popup = response.popup;
+        this.images = response.images;
       },
       err => console.error(err),
       () => {
@@ -67,9 +77,13 @@ export class ProductPage {
     return event;
   }
 
-  ionViewDidLoad() {
-
+  ionViewWillEnter() {
+    this.review_tab = 'description';
   }
+
+  ionViewDidLoad() {
+  }
+
   backButtonClick() {
     this.navCtrl.pop();
   }
@@ -128,9 +142,8 @@ export class ProductPage {
 
   }
 
-
   addWishlist() {
-    this.formData = {      
+    this.formData = {
       product_id: Number(this.product_id)
     };
     this.loadingProvider.present();
@@ -161,6 +174,7 @@ export class ProductPage {
         this.loadingProvider.dismiss();
       }
     );
-
   }
+
+
 }

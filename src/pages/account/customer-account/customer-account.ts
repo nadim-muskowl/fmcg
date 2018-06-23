@@ -5,6 +5,8 @@ import { CustomerLoginPage } from '../customer-login/customer-login';
 import { CustomerAddressPage } from '../customer-address/customer-address';
 import { CustomerOrderPage } from '../customer-order/customer-order';
 import { CustomerWishlistPage } from '../customer-wishlist/customer-wishlist';
+import { CustomerAccountEditPage } from '../customer-account-edit/customer-account-edit';
+import { CustomerChangePasswordPage } from '../customer-change-password/customer-change-password';
 
 // providers
 import { CustomerProvider } from '../../../providers/customer/customer';
@@ -32,7 +34,7 @@ export class CustomerAccountPage {
   }
 
   ionViewDidLoad() {
-    
+
   }
 
   isLogin() {
@@ -74,4 +76,11 @@ export class CustomerAccountPage {
     this.navCtrl.setRoot(CustomerOrderPage);
   }
 
+  gotoEditAccount() {
+    this.navCtrl.setRoot(CustomerAccountEditPage);
+  }
+
+  gotoChangePassword() {
+    this.navCtrl.setRoot(CustomerChangePasswordPage);
+  }
 }

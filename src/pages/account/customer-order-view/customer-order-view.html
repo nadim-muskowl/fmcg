@@ -10,16 +10,16 @@
                 <p>order id: {{order_id}}</p>
             </ion-col>
             <ion-col col-6>
-                <p>date added: {{date_added}}</p>
+                <p>date: {{date_added}}</p>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col col-6>
-                <h4 [innerHTML]="payment_address"></h4>
+                <h6 [innerHTML]="payment_address"></h6>
                 <p>{{payment_method}}</p>
             </ion-col>
             <ion-col col-6>
-                <h4 [innerHTML]="shipping_address"></h4>
+                <h6 [innerHTML]="shipping_address"></h6>
                 <p>{{shipping_method}}</p>
             </ion-col>
         </ion-row>
@@ -27,23 +27,22 @@
 
     <hr>
     <h2 text-center>Products</h2>
-    <ion-card *ngFor="let product of products;">
-        <ion-card-content>
-            <ion-item>
-                <div item-start>
-                    <h3 [innerHTML]="product.name"></h3>
-                    <p>{{product.model}}</p>
-                    <p>{{product.quantity}}</p>
-                    <p>{{product.price}}</p>
-                    <p>{{product.total}}</p>
-                </div>
-                <ion-buttons item-end>
+    <ion-grid>
+        <ion-row *ngFor="let product of products;">
+            <ion-col col-8>
+                <h6 [innerHTML]="product.name"></h6>
+                <p>{{product.model}}</p>
+                <p>{{product.quantity}}</p>
+                <p>{{product.price}}</p>
+                <p>{{product.total}}</p>
+            </ion-col>
+            <ion-col col-4>
+                <ion-buttons end>
                     <button ion-button color="secondary" icon-only (click)="viewDetail(product)"><ion-icon name="ios-eye-outline"></ion-icon></button>
                 </ion-buttons>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
-
+            </ion-col>
+        </ion-row>
+    </ion-grid>
     <ion-list>
         <ion-item *ngFor="let total of totals;">
             <div item-start>

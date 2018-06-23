@@ -47,7 +47,7 @@
     </ion-navbar>
 
     <ion-toolbar>
-        <ion-searchbar start round placeholder="Search Products" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+        <ion-searchbar start round placeholder="Search Products" [(ngModel)]="searchInput" [showCancelButton]="shouldShowCancel" (search)="onSearch($event)" (ionCancel)="onSearchCancel($event)"></ion-searchbar>
         <ion-buttons end>
             <button end ion-button class="follow-us-btn" (click)="presentActionSheet($event)">
                 Follow us &nbsp;

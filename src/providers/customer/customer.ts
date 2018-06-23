@@ -70,7 +70,7 @@ export class CustomerProvider {
 
   apiRegister(data: any) {
 
-    this.URL = ConfigProvider.BASE_URL + 'customer/register'+ '&api_token=' + ConfigProvider.API_TOKEN;
+    this.URL = ConfigProvider.BASE_URL + 'customer/register' + '&api_token=' + ConfigProvider.API_TOKEN;
 
     this.formData.append('firstname', data.firstname);
     this.formData.append('lastname', data.lastname);
@@ -90,7 +90,7 @@ export class CustomerProvider {
 
   apiLogin(data: any) {
     console.log(data);
-    this.URL = ConfigProvider.BASE_URL + 'customer/login'+ '&api_token=' + ConfigProvider.API_TOKEN;
+    this.URL = ConfigProvider.BASE_URL + 'customer/login' + '&api_token=' + ConfigProvider.API_TOKEN;
 
     this.formData.append('email', data.email);
     this.formData.append('telephone', data.telephone);
@@ -146,6 +146,34 @@ export class CustomerProvider {
     });
   }
 
+
+  changeAccountData(data: any) {
+    this.URL = ConfigProvider.BASE_URL + 'account/edit&customer_id=' + ConfigProvider.CUSTOMER_ID + '&api_token=' + ConfigProvider.API_TOKEN;
+    this.formData.append('firstname', data.firstname);
+    this.formData.append('lastname', data.lastname);
+    this.formData.append('email', data.email);
+    this.formData.append('telephone', data.telephone);
+    return this.http.post(this.URL,
+      this.formData,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  changePassword(data: any) {
+    this.URL = ConfigProvider.BASE_URL + 'account/change_password&customer_id=' + ConfigProvider.CUSTOMER_ID + '&api_token=' + ConfigProvider.API_TOKEN;
+
+    this.formData.append('password', data.password);
+    this.formData.append('confirm', data.confirm);
+
+    return this.http.post(this.URL,
+      this.formData,
+      {
+        headers: this.headers,
+      }
+    );
+  }
 
   // db
   connectDb() {

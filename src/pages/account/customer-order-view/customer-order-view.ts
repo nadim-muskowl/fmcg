@@ -6,7 +6,7 @@ import { LoadingProvider } from '../../../providers/loading/loading';
 import { OrderProvider } from '../../../providers/order/order';
 import { AlertProvider } from '../../../providers/alert/alert';
 import { CustomerProvider } from '../../../providers/customer/customer';
-
+import { ProductPage } from '../../products/product/product';
 @IonicPage()
 @Component({
   selector: 'page-customer-order-view',
@@ -85,4 +85,11 @@ export class CustomerOrderViewPage {
         console.log(e);
       });
   }
+
+  viewDetail(data: any) {
+    this.navCtrl.setRoot(ProductPage, { product_id: data.product_id });
+  }
+
+
+
 }

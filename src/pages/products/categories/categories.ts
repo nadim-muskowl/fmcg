@@ -22,14 +22,14 @@ export class CategoriesPage {
     public navParams: NavParams,
     private productProvider: ProductProvider,
     private loadingProvider: LoadingProvider,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    
   ) {
     this.getServerData();
   }
 
   ionViewDidLoad() {
   }
-
 
   public getServerData() {
     this.loadingProvider.present();

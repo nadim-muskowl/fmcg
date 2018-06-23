@@ -4,11 +4,30 @@
         <ion-row>
             <ion-col col-6>
                 <img src="{{popup}}">
-
+                <div class="image-slider">
+                    <ion-slides>
+                        <ion-slide class="image-slider-slide" *ngFor="let image of images;">
+                            <img src="{{image.popup}}">
+                        </ion-slide>
+                    </ion-slides>
+                </div>
             </ion-col>
             <ion-col col-6>
-                <h1>{{heading_title}}</h1>
-                <p>{{price}}</p>
+                <h1 [innerHTML]="heading_title"></h1>
+
+                <div *ngIf="special !=false; then showspecialprice else showprice"></div>
+
+                <ng-template #showprice>
+                    <p>{{price}}</p>
+                </ng-template>
+
+                <ng-template #showspecialprice>
+                    <del>{{price}}</del>
+                    <p>{{special}}</p>
+                </ng-template>
+
+
+
                 <p>Availability: {{stock}}</p>
                 <rating [(ngModel)]="rating" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"></rating>
 
@@ -38,7 +57,25 @@
     <ion-grid>
         <ion-row>
             <ion-col col-12>
-                <p [innerHTML]="description"></p>
+
+                <div padding>
+                    <ion-segment [(ngModel)]="review_tab">
+                        <ion-segment-button value="description">
+                            Description
+                        </ion-segment-button>
+                        <ion-segment-button value="reviews">
+                            Reviews
+                        </ion-segment-button>
+                    </ion-segment>
+                </div>
+                <div [ngSwitch]="review_tab">
+                    <div *ngSwitchCase="'description'">
+                        <p [innerHTML]="description"></p>
+                    </div>
+                    <div *ngSwitchCase="'reviews'">
+                        <product-review [productid]="product_id"></product-review>
+                    </div>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>

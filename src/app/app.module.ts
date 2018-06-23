@@ -17,11 +17,20 @@ import { SQLite } from '@ionic-native/sqlite';
 import { SQLitePorter } from '@ionic-native/sqlite-porter';
 // pages
 import { HomePage } from '../pages/home/home';
+import { StoresPage } from '../pages/stores/stores';
 import { TabsPage } from '../pages/tabs/tabs';
+//public
+import { TermsAndConditionsPage } from '../pages/public/terms-and-conditions/terms-and-conditions';
+import { HelpAndSupportPage } from '../pages/public/help-and-support/help-and-support';
+import { NotificationsPage } from '../pages/public/notifications/notifications';
+import { ContactUsPage } from '../pages/public/contact-us/contact-us';
+
 //products
 import { CategoriesPage } from '../pages/products/categories/categories';
 import { CategoryProductsPage } from '../pages/products/category-products/category-products';
 import { ProductPage } from '../pages/products/product/product';
+import { SpecialProductsPage } from '../pages/products/special-products/special-products';
+import { SearchProductsPage } from '../pages/products/search-products/search-products';
 
 // account
 import { CustomerLoginPage } from '../pages/account/customer-login/customer-login';
@@ -32,6 +41,8 @@ import { CustomerAddressFormPage } from '../pages/account/customer-address-form/
 import { CustomerOrderPage } from '../pages/account/customer-order/customer-order';
 import { CustomerOrderViewPage } from '../pages/account/customer-order-view/customer-order-view';
 import { CustomerWishlistPage } from '../pages/account/customer-wishlist/customer-wishlist';
+import { CustomerAccountEditPage } from '../pages/account/customer-account-edit/customer-account-edit';
+import { CustomerChangePasswordPage } from '../pages/account/customer-change-password/customer-change-password';
 
 // shopping-cart
 import { CartPage } from '../pages/shopping-cart/cart/cart';
@@ -47,6 +58,7 @@ import { CartSuccessPage } from '../pages/shopping-cart/cart-success/cart-succes
 // components
 import { CustomerAddressComponent } from '../components/customer-address/customer-address';
 import { CartComponent } from '../components/cart/cart';
+import { ProductReviewComponent } from '../components/product-review/product-review';
 
 
 // providers
@@ -63,12 +75,18 @@ import { ModalProvider } from '../providers/modal/modal';
 import { CartProvider } from '../providers/cart/cart';
 import { OrderProvider } from '../providers/order/order';
 import { WishlistProvider } from '../providers/wishlist/wishlist';
+import { HomeProvider } from '../providers/home/home';
+import { InformationProvider } from '../providers/information/information';
+
+import { HideHeaderDirective } from '../directives/hide-header/hide-header';
 
 
 @NgModule({
+  
   declarations: [
     MyApp,
     HomePage,
+    StoresPage,
     TabsPage,
     CategoriesPage,
     CategoryProductsPage,
@@ -92,6 +110,16 @@ import { WishlistProvider } from '../providers/wishlist/wishlist';
     CartCustomerFormPage,
     CartSuccessPage,
     CustomerOrderViewPage,
+    HideHeaderDirective,
+    SpecialProductsPage,
+    ProductReviewComponent,
+    TermsAndConditionsPage,
+    HelpAndSupportPage,
+    NotificationsPage,
+    ContactUsPage,
+    SearchProductsPage,
+    CustomerAccountEditPage,
+    CustomerChangePasswordPage    
   ],
   imports: [
     HttpClientModule,
@@ -103,11 +131,12 @@ import { WishlistProvider } from '../providers/wishlist/wishlist';
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     })
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [IonicApp,],
   entryComponents: [
     MyApp,
     HomePage,
     TabsPage,
+    StoresPage,
     CategoriesPage,
     CategoryProductsPage,
     ProductPage,
@@ -129,6 +158,15 @@ import { WishlistProvider } from '../providers/wishlist/wishlist';
     CartCustomerFormPage,
     CartSuccessPage,
     CustomerOrderViewPage,
+    SpecialProductsPage,
+    ProductReviewComponent,
+    TermsAndConditionsPage,
+    HelpAndSupportPage,
+    NotificationsPage,
+    ContactUsPage,
+    SearchProductsPage,
+    CustomerAccountEditPage,
+    CustomerChangePasswordPage
   ],
   providers: [
     StatusBar,
@@ -151,7 +189,9 @@ import { WishlistProvider } from '../providers/wishlist/wishlist';
     ModalProvider,
     CartProvider,
     OrderProvider,
-    WishlistProvider
+    WishlistProvider,  
+    HomeProvider,
+    InformationProvider,  
   ]
 })
 export class AppModule { }

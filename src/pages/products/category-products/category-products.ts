@@ -4,6 +4,7 @@ import { ProductProvider } from '../../../providers/product/product';
 import { ProductPage } from '../product/product';
 import { ActionSheetController } from 'ionic-angular';
 import { LoadingProvider } from '../../../providers/loading/loading';
+
 @IonicPage()
 @Component({
   selector: 'page-category-products',
@@ -31,7 +32,7 @@ export class CategoryProductsPage {
     public navParams: NavParams,
     private productsProvider: ProductProvider,
     public actionSheetCtrl: ActionSheetController,
-    private loadingProvider: LoadingProvider
+    private loadingProvider: LoadingProvider,   
   ) {
     this.category_id = this.navParams.data.category_id;
     this.getServerData();
